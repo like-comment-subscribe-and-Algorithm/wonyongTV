@@ -1,4 +1,4 @@
-package brute_force;
+package simulation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,15 +62,5 @@ public class BJ15686_GOLD5_치킨배달 {
             visited[i] = false;
         }
 
-    }
-}
-
-class Site {
-    int r;
-    int c;
-
-    public Site(int r, int c) {
-        this.r = r;
-        this.c = c;
     }
 }
