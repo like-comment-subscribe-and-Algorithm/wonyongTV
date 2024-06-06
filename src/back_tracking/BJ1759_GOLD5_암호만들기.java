@@ -57,4 +57,46 @@ public class BJ1759_GOLD5_암호만들기 {
         }
         return c1 >= 2 && c2 >= 1;
     }
+
+    class Sol2 {
+        static HashMap<String, String> map;
+        static int l;
+        static int c;
+        static StringBuilder sb = new StringBuilder();
+        static String[] words;
+
+        public static void main(String[] args) throws IOException {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            map = new HashMap<>();
+            map.put("a", "");
+            map.put("e", "");
+            map.put("i", "");
+            map.put("o", "");
+            map.put("u", "");
+
+            l = Integer.parseInt(st.nextToken());
+            c = Integer.parseInt(st.nextToken());
+            words = br.readLine().split(" ");
+            Arrays.sort(words);
+            dfs(new String[l], 0, 0, 0, 0);
+            System.out.println(sb);
+        }
+
+        private static void dfs(String[] temp, int nextIdx, int idx, int jCnt, int mCnt) {
+            if (idx == l) {
+                if (jCnt < 2 || mCnt < 1) return;
+                sb.append(String.join("", temp)).append("\n");
+                return;
+            }
+
+            for (int i = nextIdx; i < words.length; i++) {
+                String word = words[i];
+                temp[idx] = word;
+                if (map.containsKey(word)) dfs(temp, i + 1, idx + 1, jCnt, mCnt + 1);
+                else dfs(temp, i + 1, idx + 1, jCnt + 1, mCnt);
+            }
+        }
+    }
 }
