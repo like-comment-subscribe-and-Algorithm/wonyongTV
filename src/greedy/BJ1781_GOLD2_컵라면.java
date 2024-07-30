@@ -3,6 +3,9 @@ package greedy;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -14,6 +17,37 @@ public class BJ1781_GOLD2_컵라면 {
      * */
     public static void main(String[] args) throws IOException {
         solve2();
+    }
+
+    /*
+    * 뒤에서부터 푸는 방식
+    *
+    * */
+    public static void solve3() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+        List<List<Integer>> nums = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            nums.add(new ArrayList<>());
+        }
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int d = Integer.parseInt(st.nextToken());
+            int c = Integer.parseInt(st.nextToken());
+            nums.get(d).add(c);
+        }
+        int answer = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = n; i > 0; i--) {
+            for (int num : nums.get(i)) {
+                pq.add(num);
+            }
+            if (!pq.isEmpty()) {
+                answer += pq.poll();
+            }
+        }
+        System.out.println(answer);
     }
 
     /*
