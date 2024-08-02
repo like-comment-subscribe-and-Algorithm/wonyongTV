@@ -12,7 +12,7 @@ public class BJ2110_GOLD4_공유기설치 {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         int n = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
         int[] nums = new int[n];
         for (int i = 0; i < n; i++) {
             nums[i] = Integer.parseInt(br.readLine());
@@ -21,26 +21,22 @@ public class BJ2110_GOLD4_공유기설치 {
 
         int start = 1;
         int end = nums[n - 1] - nums[0];
-
-        int answer = -1;
         while (start <= end) {
             int mid = (start + end) / 2;
-            int temp = 1;
-            int before = nums[0];
-            for (int num : nums) {
-                if (num - before < mid) {
-                    continue;
+            int cnt = 1;
+            int temp = nums[0];
+            for (int i = 1; i < n; i++) {
+                if (nums[i] - temp >= mid) {
+                    temp = nums[i];
+                    cnt++;
                 }
-                temp++;
-                before = num;
             }
-            if (temp >= c) {
-                answer = Math.max(answer, mid);
+            if (cnt >= m) {
                 start = mid + 1;
             } else {
                 end = mid - 1;
             }
         }
-        System.out.println(answer);
+        System.out.println(end);
     }
 }
