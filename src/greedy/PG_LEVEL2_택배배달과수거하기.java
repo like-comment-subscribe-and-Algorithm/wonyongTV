@@ -1,6 +1,6 @@
 package greedy;
 
-public class PG_LEVEL3_택배배달과수거하기 {
+public class PG_LEVEL2_택배배달과수거하기 {
     class Solution {
         public long solution(int cap, int n, int[] deliveries, int[] pickups) {
             long answer = 0;
