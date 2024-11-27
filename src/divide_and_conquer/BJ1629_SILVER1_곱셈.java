@@ -35,4 +35,26 @@ public class BJ1629_SILVER1_곱셈 {
         if (b % 2 == 0) return temp * temp % c;
         return (temp * temp % c) * a % c;
     }
+
+    public static void main2(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+
+        long answer = 1;
+        long num = a % c;
+        while (b > 0) {
+            if (b % 2 == 1) {
+                answer = ((answer % c) * (num % c)) % c;
+            }
+
+            num = ((num % c) * (num % c)) % c;
+
+            b /= 2;
+        }
+        System.out.println(answer);
+    }
 }
